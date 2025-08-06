@@ -15,7 +15,7 @@ from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
 
 from sklearn.ensemble import RandomForestClassifier
 
-df = pd.read_excel('data/Disease_symptom_and_patient_profile_dataset.xlsx', engine='openpyxl')
+df = pd.read_excel('https://raw.githubusercontent.com/nishaimmadisetty/disease-detector/refs/heads/main/Disease_symptom_and_patient_profile_dataset.csv', engine='openpyxl')
 
 
 features = ['Fever', 'Cough', 'Difficulty Breathing', 'Age', 'Gender', 'Blood Pressure', 'Cholesterol Level']
@@ -72,4 +72,5 @@ and what you need to do if you have it.These are the symptom{ Arjun }
 text1 = model.generate_content([prompt])
 
 print(text1.text)
+
 
