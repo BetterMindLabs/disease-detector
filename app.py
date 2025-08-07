@@ -15,7 +15,8 @@ from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
 
 from sklearn.ensemble import RandomForestClassifier
 
-df = pd.read_excel('Disease_symptom_and_patient_profile_dataset.xlsx', engine='openpyxl')
+df = pd.read_csv('Disease_symptom_and_patient_profile_dataset.csv')
+
 
 features = ['Fever', 'Cough', 'Difficulty Breathing', 'Age', 'Gender', 'Blood Pressure', 'Cholesterol Level']
 target = 'Disease'
@@ -38,7 +39,7 @@ print(df)
 for col in features:
     options = df[col].dropna().unique()
     print(f"{col} options: {', '.join(map(str, options))}")
-    #user_input[col] = st.selectbox(f"Select {col}:", options=list(options))
+    user_input[col] = st.selectbox(f"Select {col}:", options=list(options))
 user_df = pd.DataFrame([user_input])
 print(user_df)
 print(X_test)
@@ -55,7 +56,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 
 #symptoms = input("Enter a describtion of your symptoms:")
 
-data = pd.read_csv('https://raw.githubusercontent.com/nishaimmadisetty/disease-detector/refs/heads/main/medquad.csv', on_bad_lines='skip')
+data = pd.read_csv('medquad.csv', on_bad_lines='skip')
 
 Arjun= st.text_input("Enter a description of your symptoms:", key="symptoms")
 
@@ -69,11 +70,5 @@ and what you need to do if you have it.These are the symptom{ Arjun }
 """
 
 text1 = model.generate_content([prompt])
-
 print(text1.text)
-
-
-
-
-
-
+st.write(text1.text)
